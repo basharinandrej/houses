@@ -14,10 +14,13 @@
                 <li class="list-group-item">Vestibulum at eros</li>
             </ul>
             <div class="card-body">
-                <a href="#" class="btn btn-primary">Подробнее</a>
+                <a v-on:click="clickHandler"
+                   class="btn btn-primary">
+                    Подробнее
+                </a>
 
                 <label class="card-body__label">
-                    <input type="checkbox">
+                    <input type="checkbox" v-model="checked" v-on:change="$emit('favoriteHandler', id)">
                     В избранное
                 </label>
             </div>
@@ -27,8 +30,19 @@
 
 <script>
 export default {
-    nmae: 'Card',
-    props: ['title', 'square', 'price', 'desc', 'phone']
+  props: ['title', 'square', 'price', 'desc', 'phone', 'id', 'favorites'],
+  data() {
+    return {
+      checked: this.favorites
+    }
+  },
+  methods: {
+    clickHandler() {
+      const id = this.id
+      this.$store.dispatch('getFlatAction', id)
+      this.$router.push({ name: 'flat', params: { 'id': id }})
+    }
+  }
 }
 </script>
 

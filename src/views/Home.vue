@@ -7,10 +7,13 @@
                     v-for="(flat, idx) of flats"
                     :key="idx"
                     v-bind:title="flat.title"
+                    v-bind:id="flat.id"
                     v-bind:square="flat.square"
                     v-bind:price="flat.price"
                     v-bind:desc="flat.desc"
                     v-bind:phone="flat.phone"
+                    v-bind:favorites="flat.favorites"
+                    v-on:favoriteHandler="favoritesHandler"
                 />
             </div>
         </main>
@@ -20,9 +23,9 @@
 </template>
 
 <script>
-import Footer from './Footer.vue'
-import Card from './Card.vue'
-import Header from './Header.vue'
+import Footer from '../components/Footer.vue'
+import Card from '../components/Card.vue'
+import Header from '../components/Header.vue'
 
 export default {
     name: 'Home',
@@ -36,11 +39,16 @@ export default {
     },
     mounted() {
         return this.flats = this.$store.getters.getFlats
+    },
+    methods: {
+      favoritesHandler(id) {
+        this.$store.dispatch('addFavoritesAction', id)
+      }
     }
 }
 </script>
 
-<style scoped>
+<style >
 .main {
     padding-top: 32px;
 }
