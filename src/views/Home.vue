@@ -3,8 +3,8 @@
         <Header/>
         <main class="main">
             <div class="container">
-                <Card 
-                    v-for="(flat, idx) of flats"
+                <Card
+                    v-for="(flat, idx) of getFlats"
                     :key="idx"
                     v-bind:title="flat.title"
                     v-bind:id="flat.id"
@@ -13,7 +13,7 @@
                     v-bind:desc="flat.desc"
                     v-bind:phone="flat.phone"
                     v-bind:favorites="flat.favorites"
-                    v-on:favoriteHandler="favoritesHandler"
+                    v-on:favoriteHandler="favoriteHandler"
                 />
             </div>
         </main>
@@ -29,21 +29,23 @@ import Header from '../components/Header.vue'
 
 export default {
     name: 'Home',
-    data() {
-        return {
-            flats: []
-        }
-    },
     components: {
         Footer, Card, Header
     },
     mounted() {
-        return this.flats = this.$store.getters.getFlats
+      this.$store.dispatch('getInfoUserStart')
+      this.$store.dispatch('getFlatsAction')
+      this.$store.dispatch('getInfoUser')
+    },
+    computed: {
+        getFlats() {
+            return this.$store.state.flats.items
+        }
     },
     methods: {
-      favoritesHandler(id) {
-        this.$store.dispatch('addFavoritesAction', id)
-      }
+        favoriteHandler(id) {
+            this.$store.commit('addFavorites', id)
+        }
     }
 }
 </script>

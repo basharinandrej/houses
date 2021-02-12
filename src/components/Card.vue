@@ -39,7 +39,6 @@ export default {
   methods: {
     clickHandler() {
       const id = this.id
-      this.$store.dispatch('getFlatAction', id)
       this.$router.push({ name: 'flat', params: { 'id': id }})
     }
   }

@@ -4,8 +4,8 @@
     <main class="main">
       <div class="container">
           <Card
-              v-show="addFavoritesFlat.length"
-              v-for="(flat, idx) of addFavoritesFlat"
+              v-show="flatFavorites.length"
+              v-for="(flat, idx) of flatFavorites"
               :key="idx"
               v-bind:title="flat.title"
               v-bind:square="flat.square"
@@ -14,11 +14,11 @@
               v-bind:desc="flat.desc"
               v-bind:phone="flat.phone"
               v-bind:favorites="flat.favorites"
-              v-on:favoriteHandler="favoritesHandler"
+              v-on:favoriteHandler="favoriteHandler"
           />
         <p
-            v-show="!addFavoritesFlat.length"
-            > Нет выбранных квартир</p>
+          v-show="!flatFavorites.length"
+        > Нет выбранных квартир</p>
       </div>
     </main>
 
@@ -36,14 +36,17 @@ export default {
   components: {
     Card, Header, Footer
   },
-  computed: {
-    addFavoritesFlat() {
-      return this.$store.getters.getFavorites
+  data() {
+    return {
+      flatFavorites: []
     }
   },
+  mounted() {
+    this.flatFavorites = this.$store.getters.getFavorites
+  },
   methods: {
-    favoritesHandler(id) {
-      this.$store.dispatch('addFavoritesAction', id)
+    favoriteHandler(id) {
+      this.$store.commit('addFavorites', id)
     }
   }
 }

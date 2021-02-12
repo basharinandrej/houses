@@ -14,6 +14,9 @@
                         <li class="nav-item">
                           <router-link class="nav-link" to="/favorites">Избранное</router-link>
                         </li>
+                      <li class="nav-item">
+                          <router-link class="nav-link" to="/login">Личный кабинет</router-link>
+                        </li>
                     </ul>
                     Admin/user
                 </div>
