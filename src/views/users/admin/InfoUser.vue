@@ -1,8 +1,7 @@
 <template>
     <div class="card" style="width: 700px">
       <img :src="avatar"
-           class="card-avatar"
-           alt="Avatar">
+           class="card-avatar">
       <div class="card-body">
         <p class="card-text">
           <strong>Имя:</strong> {{ name }}
@@ -11,26 +10,13 @@
           <strong>Статус:</strong> Админ
         </p>
       </div>
-
-<!--      <FormUsers-->
-<!--        v-on:submitNameHandler="submitNameHandler"-->
-<!--      />-->
     </div>
 </template>
 
 
 <script>
-import FormUsers from '@/components/FormUsers'
 export default {
-  props: [ 'name', 'avatar'],
-  components: {
-    FormUsers
-  },
-  methods: {
-    // submitNameHandler() {
-    //   this.name = JSON.parse(localStorage.getItem('nameAdmin'))
-    // }
-  }
+  props: [ 'name', 'avatar']
 }
 </script>
 
@@ -40,15 +26,6 @@ export default {
   display: flex;
   align-items: start;
   position: relative;
-}
-.card:after{
-  content: '';
-  background: #dfdfdf;
-  width: 1px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 250px;
 }
 .card-avatar {
   width: 128px;

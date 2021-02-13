@@ -33,9 +33,11 @@ export default {
         Footer, Card, Header
     },
     mounted() {
-      this.$store.dispatch('getInfoUserStart')
-      this.$store.dispatch('getFlatsAction')
-      this.$store.dispatch('getInfoUser')
+      //Убрать костыль в виде setTimeout
+      setTimeout(()=> {
+        this.$store.dispatch('getFlatsAction')
+        this.$store.dispatch('getInfoUser')
+      }, 1000)
     },
     computed: {
         getFlats() {
