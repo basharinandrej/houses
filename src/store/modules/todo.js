@@ -13,7 +13,6 @@ const mutations = {
             title: payload,
             completed: false
         }
-        console.log(state);
         state.todos.unshift(newTodo)
     },
     checkedTodo(state, payload) {

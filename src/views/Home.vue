@@ -37,11 +37,12 @@ export default {
       setTimeout(()=> {
         this.$store.dispatch('getFlatsAction')
         this.$store.dispatch('getInfoUser')
+        this.$store.commit('addFlat')
       }, 1000)
     },
     computed: {
         getFlats() {
-            return this.$store.state.flats.items
+          return this.$store.state.flats.items
         }
     },
     methods: {
