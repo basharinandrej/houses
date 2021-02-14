@@ -2,7 +2,7 @@ const actions = {
      getFlatsAction: async function(cxt) {
          if( !cxt.state.fetchFlats ) {
              try {
-                 const response = await fetch('https://houses-881f7-default-rtdb.firebaseio.com/flats.json')
+                 const response = await fetch('https://houses-142f2-default-rtdb.firebaseio.com/flats.json')
                  const data = await response.json()
 
                  cxt.commit('getSuccessFlatsMutation', data)
